@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+    
+</head>
+<body>
+    <header>
+        <h1>我的自學筆記</h1>
+        <nav>
+            <ul>
+                <li><a href="#about">關於我</a></li>
+                <li><a href="#learning">學習進度</a></li>
+                <li><a href="#practice">小練習</a></li>
+            </ul>
+        </nav>
+
+        <nav class="navbar">
+            <div class="logo">我的品牌</div>
+            <ul class="nav-links">
+                <li>首頁</li>
+                <li>作品集</li>
+                <li>聯絡我</li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section id="about">
+            <h2>關於我</h2>
+            <p>你好！我正在學習 <strong>前端開發</strong>。這是我用 VS Code 寫的第一個網頁。</p>
+            <img src="https://via.placeholder.com/150" alt="我的大頭貼">
+        </section>
+
+        <section id="learning">
+            <h2>目前的學習清單</h2>
+            <ol>
+                <li>HTML5 基礎標籤 (完成)</li>
+                <li>CSS 排版美化 (進行中)</li>
+                <li>JavaScript 邏輯互動 (尚未開始)</li>
+            </ol>
+        </section>
+
+        <section id="practice">
+            <h2>小練習</h2>    
+            <p>--------------------------------------------</p>
+            <button id="myBtn">Click me</button>
+            <p id="message">原本的文字</p>
+
+            <p>--------------------------------------------</p>
+            <button class="menu-item">選項 1</button>
+            <button class="menu-item">選項 2</button>
+            <button class="menu-item">選項 3</button>
+            <p>--------------------------------------------</p>
+            <div class="todo-container">
+                <h2>我的待辦清單</h2>
+                <input type="text" id="todoInput" placeholder="請輸入待辦事項...">
+                <button id="addBtn">新增</button>
+
+                <ul id="todoList">
+                    
+                </ul>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 我的學習紀錄</p>
+    </footer>
+    <script src="script.js"></script>
+</body>
+</html>
