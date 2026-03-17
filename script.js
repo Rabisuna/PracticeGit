@@ -33,17 +33,43 @@ function addNewItem() {
         return;
     }
 
-    const newItem = document.createElement('li');
-    newItem.textContent = text;
-
-    newItem.addEventListener('click', function(){
-        this.remove();
-        saveToLocal();
-    });
+    const newItem = createTodoItem(text);
 
     list.appendChild(newItem);
     input.value = "";
     saveToLocal();
+    updateCount();
+}
+
+function createTodoItem(text, iscompleted = false) {
+    const newItem = document.createElement('li');
+    
+    if(iscompleted)
+        newItem.classList.add('completed');
+    
+    newItem.innerHTML = `<span>${text}</span>
+        <button class="delete-btn">🗑️</button>`;
+
+    newItem.addEventListener('click', function(e){
+        if(e.target.tagName !== 'BUTTON') {
+            this.classList.toggle('completed');
+            saveToLocal();
+            updateCount();
+        }
+    });
+    
+    const delBtn = newItem.querySelector('.delete-btn');
+    delBtn.addEventListener('click', function(){
+        newItem.classList.add('removing');
+        setTimeout(() => {
+            newItem.remove();
+            saveToLocal();
+            updateCount();
+        }, 400);
+        
+    });
+
+    return newItem;
 }
 
 function saveToLocal() {
@@ -51,7 +77,14 @@ function saveToLocal() {
     const items = [];
 
     allLi.forEach(li => {
-        items.push(li.textContent);
+        const text = li.querySelector('span').textContent;
+
+        const iscompleted = li.classList.contains('completed');
+
+        items.push({
+            text: text,
+            completed: iscompleted
+        });
     });
 
     localStorage.setItem('myTodoList', JSON.stringify(items));
@@ -61,16 +94,21 @@ function loadList() {
     const savedData = localStorage.getItem('myTodoList');
     if(savedData){
         const items = JSON.parse(savedData);
-        items.forEach(text => {
-            const newItem = document.createElement('li');
-            newItem.textContent = text;
-            newItem.addEventListener('click', function() {
-                this.remove();
-                saveToLocal();
-            });
+        items.forEach(item => {
+            const newItem = createTodoItem(item.text, item.completed);
             list.appendChild(newItem);
         })
     }
+    updateCount();
+}
+
+function updateCount() {
+    const total = document.querySelectorAll("#todoList li").length;
+    const completed = document.querySelectorAll('#todoList li.completed').length;
+    const remaining = total - completed;
+
+    const todoCount = document.querySelector('#todoCount');
+    todoCount.textContent = `待辦: ${remaining} / 已完成: ${completed}`;
 }
 
 addBtn.addEventListener('click', function () {
