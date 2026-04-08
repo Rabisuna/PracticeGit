@@ -1,3 +1,18 @@
+:root {
+    /*Default Style*/
+    --primary-color: #ff4d4d;    /* 番茄鐘的紅 */
+    --bg-color: #ffffff;        /* 網頁背景淺灰 */
+    --text-color: #333;         /* 主要文字深灰 */
+    --card-bg: #ffffff;         /* 卡片白色 */
+}
+
+body.dark-theme {
+    --primary-color: #ff6666;
+    --bg-color: #1a1a1a;
+    --text-color: #f0f0f0;
+    --card-bg: #2d2d2d;
+}
+
 h1 {
     color: darkblue;
     font-size: 40px;
@@ -5,12 +20,15 @@ h1 {
 }
 
 body {
-    font-family: "Microsoft JhengHei", Arial, sans-serif;
-    background-color: skyblue;
-    line-height: 1.6;
+    /*font-family: "Microsoft JhengHei", Arial, sans-serif;*/    
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    /*line-height: 1.6;
     margin: 0;
-    padding: 20px;
+    padding: 20px;*/
+    transition: background-color 0.5s, color 0.5s;
 }
+
 
 header {
     background-color: #333;
@@ -36,7 +54,7 @@ nav a {
 }
 
 section {
-    background: white;
+    background: var(--bg-color);
     margin: 20px 0;
     padding: 20px;
     border-left: 5px solid #333;
@@ -131,7 +149,7 @@ li:hover {
 
 #addBtn {
     padding: 10px 20px;
-    background-color: #4CAF50;
+    background-color: var(--primary-color);
     color: white;
     border: none;
     border-radius: 5px;
@@ -141,7 +159,6 @@ li:hover {
 
 #addBtn:active {
     transform: scale(0.95);
-    background-color: #45a049;
     box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.2);
 }
 
@@ -177,4 +194,44 @@ li {
     padding: 5px 10px;
     border-radius: 4px;
     cursor: pointer;
+}
+
+.container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+}
+
+#todo-section, #timer-section {
+    background-color: var(--card-bg);
+    flex: 1;
+    min-width: 350px;
+}
+
+.timer-display {
+    font-size: 3rem;
+    font-weight: bold;
+    text-align: center;
+    margin: 20px 0;
+    color: #ff4d4d;
+}
+
+#startBtn {
+    background-color: var(--primary-color);
+}
+
+button {
+    transition: all 0.2s ease;
+    cursor: pointer;
+}
+
+button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+button:active {
+    transform: translateY(0);
+    filter: brightness(0.9);
 }

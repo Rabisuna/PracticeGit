@@ -1,3 +1,18 @@
+//Change Style
+let changeStyleBtn = document.getElementById("changeStyle");
+let isGreen = false;
+
+changeStyleBtn.addEventListener("click", function(){
+    document.body.classList.toggle("dark-theme");
+
+    if(document.body.classList.contains("dark-theme")){
+        changeStyleBtn.textContent = "切換亮色模式";
+    }
+    else {
+        changeStyleBtn.textContent = "切換暗色模式";
+    }
+})
+
 //點擊Button練習
 const btn = document.querySelector('#myBtn');
 const txt = document.querySelector('#message');
@@ -19,12 +34,12 @@ for(let i = 1; i <= 10; i++){
         console.log(i);
 }
 
-//代辦清單練習
+//代辦清單 Function
 const input = document.querySelector('#todoInput');
 const addBtn = document.querySelector('#addBtn');
 const list = document.querySelector('#todoList');
 
-//Function
+
 function addNewItem() {
     const text = input.value;
 
@@ -122,5 +137,60 @@ input.addEventListener('keydown', function(event){
     }
 });
 
+//Timer Function
+let timer;
+let focusTime = 1;
+let timeLeft = focusTime * 60;
+let isRunning = false;
 
+const minutesDisplay = document.getElementById("minutes");
+const secondsDisplay = document.getElementById("seconds");
+const startBtn = document.getElementById("startBtn");
+const resetBtn = document.getElementById("resetBtn");
+const minutes = document.getElementById("minutes");
+
+minutes.textContent = focusTime;
+function updateTimeDisplay() {
+    const mins = Math.floor(timeLeft / 60);
+    const secs = timeLeft % 60;
+
+    minutesDisplay.textContent = String(mins).padStart(2, "0");
+    secondsDisplay.textContent = String(secs).padStart(2, "0");
+}
+
+startBtn.addEventListener("click", function() {
+    if(isRunning) {
+        clearInterval(timer);
+        startBtn.textContent = "繼續專注";
+        isRunning = false;
+    } 
+    else {
+        isRunning = true;
+        startBtn.textContent = "暫停";
+
+        timer = setInterval(() => {
+            if(timeLeft > 0) {
+                timeLeft--;
+                updateTimeDisplay();
+            }
+            else {
+                clearInterval(timer);
+                alert("時間到!");
+                isRunning = false;
+                startBtn.textContent = "開始專注";
+                timeLeft = focusTime*60;
+                updateTimeDisplay();
+            }
+        }, 1000)
+    }
+});
+
+resetBtn.addEventListener("click", function(){
+    clearInterval(timer);
+    isRunning = false;
+    timeLeft = focusTime * 60;
+    updateTimeDisplay();
+    startBtn.textContent = "開始專注";
+})
+//Main
 loadList();

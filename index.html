@@ -17,7 +17,7 @@
                 <li><a href="#practice">小練習</a></li>
             </ul>
         </nav>
-
+        
         <nav class="navbar">
             <div class="logo">我的品牌</div>
             <ul class="nav-links">
@@ -27,6 +27,8 @@
             </ul>
         </nav>
     </header>
+    
+    <button id="changeStyle">切換風格</button>
 
     <main>
         <section id="about">
@@ -55,15 +57,32 @@
             <button class="menu-item">選項 2</button>
             <button class="menu-item">選項 3</button>
             <p>--------------------------------------------</p>
-            <div class="todo-container">
-                <h2>我的待辦清單</h2>
-                <p id="todoCount"></p>
-                <input type="text" id="todoInput" placeholder="請輸入待辦事項...">
-                <button id="addBtn">新增</button>
+            <div class="container">
+                <section id="todo-section">
+                    <header>
+                        <h2>我的待辦清單</h2>
+                        <div id="todoCount"></div>
+                    </header>
+                    
+                    <div class="input-group">
+                        <input type="text" id="todoInput" placeholder="請輸入待辦事項...">
+                    <button id="addBtn">新增</button>
+                    </div>
+                    <ul id="todoList"></ul>
+                </section>
 
-                <ul id="todoList">
-
-                </ul>
+                <section id="timer-section">
+                    <header>
+                        <h2>專注計時器</h2>
+                    </header>
+                    <div class="timer-display">
+                        <span id="minutes"></span>:<span id="seconds">00</span>
+                    </div>
+                    <div class="timer-controls">
+                        <button id="startBtn">開始專注</button>
+                        <button id="resetBtn">重設</button>
+                    </div>
+                </section>
             </div>
         </section>
     </main>
